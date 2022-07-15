@@ -10,6 +10,12 @@ function navigate_link(){
 function navigate_link_touch(e: any){
   window.location = props.href
 }
+
+function navigate_touch(navigate: any){
+  return function(e: any){
+    navigate()
+  }
+}
 </script>
 
 <template>
@@ -28,8 +34,8 @@ function navigate_link_touch(e: any){
     <NavLink>
       <button 
         :active="isActive" :href="href" 
-        @click="navigate_link"
-        @touchstart="navigate_link_touch"
+        @click="navigate"
+        @touchstart="navigate_touch(navigate)"
         :class="['action-button',  props.color != undefined ? 'color-' + props.color : 'no-color' ]">
         <slot/>
       </button>
@@ -41,6 +47,7 @@ function navigate_link_touch(e: any){
 
 <style scoped>
 button.action-button{
+  cursor: pointer;
   border: 0px;
   margin: 0 5px 0 5px;
   padding: 0 10px 0 10px;

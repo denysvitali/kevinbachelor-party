@@ -9,6 +9,7 @@ config:
 docker-build:
 	docker build \
 		-t "$(IMAGE):$(VERSION)" \
+		--network def-net \
 		.
 
 docker-tag-latest:
