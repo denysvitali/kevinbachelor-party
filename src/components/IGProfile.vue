@@ -2,13 +2,13 @@
 const props = defineProps(['username'])
 
 function navigate_profile(){
-  window.location = `https://instagr.am/${props.username}`;
+  window.location.assign(`https://instagr.am/${props.username}`);
 }
 </script>
 
 <template>
   <div class="profile-container" @click="navigate_profile">
-    <img :src="'/src/assets/profiles/' + props.username + '.jpg'"/>
+    <img :src="'/assets/profiles/' + props.username + '.jpg'"/>
     <p class="username">@{{ props.username }}</p>
   </div>
 </template>

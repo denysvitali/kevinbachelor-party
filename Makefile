@@ -1,6 +1,6 @@
 REGISTRY=
 IMAGE=dvitali/kevinbachelor-party
-VERSION=$(shell ./get-version.sh)
+VERSION=latest
 TAG=$(VERSION)
 
 config:
@@ -44,3 +44,6 @@ docker-run-dev:
 		-v "$$PWD:/app" \
 		node:lts \
 		run dev-docker
+
+docker-test:
+	docker run -p 8080:80 --rm "$(IMAGE):$(VERSION)"
