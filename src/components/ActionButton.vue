@@ -28,8 +28,8 @@ function navigate_link_touch(e){
     <NavLink>
       <button 
         :active="isActive" :href="href" 
-        @click="navigate"
-        @touchstart="navigate"
+        @click="navigate_link"
+        @touchstart="navigate_link_touch"
         :class="['action-button',  props.color != undefined ? 'color-' + props.color : 'no-color' ]">
         <slot/>
       </button>
