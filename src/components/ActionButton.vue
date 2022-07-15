@@ -24,7 +24,9 @@ function navigate_link(){
     >
     <NavLink>
       <button 
-        :active="isActive" :href="href" @click="navigate"
+        :active="isActive" :href="href" 
+        @click="navigate"
+        @touchstart="navigate"
         :class="['action-button',  props.color != undefined ? 'color-' + props.color : 'no-color' ]">
         <slot/>
       </button>
