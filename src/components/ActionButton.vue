@@ -1,11 +1,13 @@
 <script setup lang="ts">
 const props = defineProps(['color', 'to', 'href'])
 
-console.log(props.color)
-
 const actionButton = "action-button";
 
 function navigate_link(){
+  window.location = props.href
+}
+
+function navigate_link_touch(e){
   window.location = props.href
 }
 </script>
@@ -14,6 +16,7 @@ function navigate_link(){
   <div v-if="props.href !== undefined">
     <button 
       @click="navigate_link"
+      @touchstart="navigate_link_touch"
       :class="['action-button',  props.color != undefined ? 'color-' + props.color : 'no-color' ]">
       <slot/>
     </button>
