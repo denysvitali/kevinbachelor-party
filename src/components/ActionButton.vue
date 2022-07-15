@@ -7,7 +7,7 @@ function navigate_link(){
   window.location = props.href
 }
 
-function navigate_link_touch(e){
+function navigate_link_touch(e: any){
   window.location = props.href
 }
 </script>
