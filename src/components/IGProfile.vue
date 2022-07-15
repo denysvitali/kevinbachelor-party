@@ -5,7 +5,7 @@ function navigate_profile(){
   window.location.assign(`https://instagr.am/${props.username}`);
 }
 
-function navigate_profile_touch(e){
+function navigate_profile_touch(e: any){
   window.location.assign(`https://instagr.am/${props.username}`);
 }
 </script>
