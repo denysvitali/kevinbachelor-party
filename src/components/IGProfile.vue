@@ -7,7 +7,9 @@ function navigate_profile(){
 </script>
 
 <template>
-  <div class="profile-container" @click="navigate_profile">
+  <div class="profile-container" 
+    @touchstart="navigate_profile"
+    @click="navigate_profile">
     <img :src="'/assets/profiles/' + props.username + '.jpg'"/>
     <p class="username">@{{ props.username }}</p>
   </div>
