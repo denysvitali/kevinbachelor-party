@@ -1,52 +1,41 @@
 <script setup lang="ts">
-const props = defineProps(['color', 'to', 'href'])
-
-const actionButton = "action-button";
-
-function navigate_link(){
-  window.location = props.href
-}
-
-function navigate_link_touch(e: any){
-  window.location = props.href
-}
-
-function navigate_touch(navigate: any){
-  return function(e: any){
-    navigate()
-  }
-}
+const props = defineProps(["color", "to", "href"]);
 </script>
 
 <template>
   <div v-if="props.href !== undefined">
-    <button 
-      @click="navigate_link"
-      @touchstart="navigate_link_touch"
-      :class="['action-button',  props.color != undefined ? 'color-' + props.color : 'no-color' ]">
-      <slot/>
+    <button
+      :class="[
+        'action-button',
+        { [`color-${props.color}`]: !!props.color },
+        { 'no-color': !props.color },
+      ]"
+    >
+      <slot />
     </button>
   </div>
   <div v-else>
-    <router-link custom :to="props['to']"
-      v-slot="{ href, route, navigate, isActive, isExactActive }" 
-    >
-    <NavLink>
-      <button 
-        :active="isActive" :href="href" 
-        @click="navigate"
-        @touchstart="navigate_touch(navigate)"
-        :class="['action-button',  props.color != undefined ? 'color-' + props.color : 'no-color' ]">
-        <slot/>
-      </button>
-    </NavLink>
+    <router-link custom :to="props['to']" v-slot="{ href, navigate, isActive }">
+      <a
+        :active="isActive"
+        :href="href"
+        :class="[
+          'action-button',
+          { [`color-${props.color}`]: !!props.color },
+          { 'no-color': !props.color },
+        ]"
+      >
+        <slot />
+      </a>
     </router-link>
   </div>
-
 </template>
 
 <style scoped>
-button.action-button{
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   border: 0px;
   margin: 0 5px 0 5px;
@@ -56,15 +45,19 @@ button.action-button{
   min-width: 80px;
   font-weight: 600;
   box-shadow: 1px 3px 7px #444;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
+  text-decoration: none;
+  color: #000;
+  position: relative;
+  z-index: 1;
 }
 
-button.action-button.color-red {
-  color: #FFF;
-  background-color: #D31E5F;
+.action-button.color-red {
+  color: #fff;
+  background-color: #d31e5f;
 }
 
-button:hover {
+.action-button:hover {
   cursor: pointer;
 }
 </style>
