@@ -4,15 +4,16 @@ const props = defineProps(["color", "to", "href"]);
 
 <template>
   <div v-if="props.href !== undefined">
-    <button
-      :class="[
-        'action-button',
-        { [`color-${props.color}`]: !!props.color },
-        { 'no-color': !props.color },
-      ]"
-    >
+      <a
+        :href="href"
+        :class="[
+          'action-button',
+          { [`color-${props.color}`]: !!props.color },
+          { 'no-color': !props.color },
+        ]"
+      >
       <slot />
-    </button>
+    </a>
   </div>
   <div v-else>
     <router-link custom :to="props['to']" v-slot="{ href, navigate, isActive }">
